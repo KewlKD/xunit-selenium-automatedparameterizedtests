@@ -1,0 +1,2055 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Picklz.SharedKernel</name>
+    </assembly>
+    <members>
+        <member name="T:Picklz.SharedKernel.Announcements.AnnouncementBase">
+            <summary>
+            Base class for all announcements
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Announcements.AnnouncementBase.GetTopic">
+            <summary>
+            Return the publish topic that should
+            be used for this announcement
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.AnnouncementBase.Source">
+            <summary>
+            An identifier of the service/system that produced
+            this entry
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.AnnouncementBase.At">
+            <summary>
+            When was this entry produced. In UTC.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.AnnouncementBase.DeduplicationId">
+            <summary>
+            A globally unique ID that allows processors
+            to recognize this announcement and check if
+            they have already processed it.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.AnnouncementCreator">
+            <summary>
+            This is supposed to be _used_ (not inherited) by
+            announcement factories. The purpose is to create
+            the announcement instance and ensure that basic
+            information is set on it.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Announcements.Announcer.PublishCriticalAsync(Picklz.SharedKernel.Announcements.AnnouncementBase)">
+             <summary>
+             Publish the given critical announcement.
+            
+             Critical meaning: throw exception if there is an error
+             </summary>
+             <param name="announcement">The critical announcement</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Announcements.Announcer.PublishNonCriticalAsync(Picklz.SharedKernel.Announcements.AnnouncementBase)">
+             <summary>
+             Publish the given non-critical announcement.
+            
+             Non-critical meaning: if an error occurs, we log it and continue
+             </summary>
+             <param name="announcement">The NON-critical announcement</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Announcements.Announcer.PublishCriticalBinaryAnnouncementAsync(Picklz.SharedKernel.Announcements.BinaryAnnouncementBase)">
+             <summary>
+             Publish the given critical binary announcement.
+            
+             Critical meaning: throw exception if there is an error
+             </summary>
+             <param name="announcement">The critical binary announcement</param>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Audit.AuditTrailAnnouncement.Summary">
+            <summary>
+            A short human readable summary of what happened
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Audit.AuditTrailAnnouncement.SubjectId">
+            <summary>
+            WHO performed this change (subjectId or systemId)
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Audit.AuditTrailAnnouncement.ObjectId">
+            <summary>
+            What was the id of the ObjectType that was touched during this "action"
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Audit.AuditTrailAnnouncement.ObjectType">
+            <summary>
+            The type of the object in question - Home, HomePresentation, what-ever....
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Audit.AuditTrailAnnouncement.Payload">
+            <summary>
+            An additional payload like an object diff in JSON detailing the concrete changes made
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Homes.HomeAnnouncementBase.HomeId">
+            <summary>
+            The ID of the relevant home
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.Homes.HomeCreatedAnnouncement">
+            <summary>
+            A Home has been created
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.Homes.HomeUpdatedAnnouncement">
+            <summary>
+            A Home has been updated
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.Homes.PresentationDeleteAnnouncement">
+            <summary>
+            A presentation delete request
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.Homes.PresentationUpdateAnnouncement">
+            <summary>
+            A presentation update request
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Homes.PresentationUpdateAnnouncement.Presentation">
+            <summary>
+            The entity of the presentation update that this announcement is about
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.IAnnouncementConfig.Source">
+            <summary>
+            The string to use as <see cref="P:Picklz.SharedKernel.Announcements.AnnouncementBase.Source"/>
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicantAnnouncementBase.SubjectId">
+            <summary>
+            The ID of the user
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicantAnnouncementBase.LoanApplicantId">
+            <summary>
+            The ID of the relevant loan applicant
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicationAnnouncementBase.SubjectId">
+            <summary>
+            The ID of the user
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicationAnnouncementBase.LoanApplicationId">
+            <summary>
+            The ID of the relevant loan application
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicationDocumentBaseAnnouncement.SubjectId">
+            <summary>
+            The ID of the user
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Loans.LoanApplicationDocumentBaseAnnouncement.LoanApplicationDocumentId">
+            <summary>
+            The ID of the relevant loan application document
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Announcements.Loans.LoanApplicationDocumentUploadAnnouncement">
+            <summary>
+            Announcer class for PubSub
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Telemetry.ExternalServiceInvokedAnnouncement.ExternalServiceName">
+            <summary>
+            The name of the external service that was invoked
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Telemetry.ExternalServiceInvokedAnnouncement.ServiceEndpoint">
+            <summary>
+            The Endpoint of the service that was called (usually the path, remove query stings and other garbage)
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Telemetry.ExternalServiceInvokedAnnouncement.CallSource">
+            <summary>
+            Which part of the platform performed the actual call (something like homeByAddress)
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Telemetry.ExternalServiceInvokedAnnouncement.HttpResponseCode">
+            <summary>
+            The http response code of the remote service
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Announcements.Users.UserAnnouncementBase.SubjectId">
+            <summary>
+            The ID of the user that this announcement
+            is about
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Auth.DefaultAuthenticationConfig">
+            <summary>
+            Default implementation of <see cref="T:Picklz.SharedKernel.Auth.IAuthenticationConfig"/>
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.ApiName">
+            <summary>
+            The ApiName, must be provisioned in the auth service
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.ApiSecret">
+            <summary>
+            The associated ApiSecret, must be provisioned in the Auth Service
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.AuthBaseUrl">
+            <summary>
+            The URI of the IdentityServer to talk to
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.ClientCredentialId">
+            <summary>
+            The client credentials id to use for system to system authentication / calls
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.ClientCredentialSecret">
+            <summary>
+            The client credentials secret to use for system to system authentication / calls
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.GetUserInfoCacheTTL">
+            <summary>
+            The TTL to set on cache entries for GetUserInfo responses
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Auth.IAuthenticationConfig.ClientCredentialsTokenCacheTTL">
+            <summary>
+            The TTL to set on cache entries for client credential tokens
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Auth.Internal.CallersBearerTokenProvider">
+             <summary>
+             Utility class for digging out the callers (the one invoking the current HTTP request against the server)
+             Bearer token if present.
+            
+             Will look in Authorization headers and in a predefined cookie for the token.
+             </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Auth.Internal.ClientCredentialsTokenProvider">
+            <summary>
+            Class for providing access tokens using client credentials challenges against the AUTH server
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Auth.Internal.ITokenProvider.GetTokenAsync">
+            <summary>
+            When implemented in a concrete token provider class it should do what has to be done to provide a token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.DecimalExtensions.ToInt32(System.Nullable{ System.Decimal},System.Int32)">
+            <summary>
+            Safe conversion of nullable decimal to int32
+            </summary>
+            <param name="dec">The nullable decimal that is to be converted</param>
+            <param name="defaultValue">The default value to return in case the decimal is null - defaults to 0</param>
+            <returns>The converted value or 0s</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.DoesNotHaveAnyIEnumerableExtensions.DoesNotHaveAny``1(System.Collections.Generic.IEnumerable{ ``0},System.Func{ ``0,System.Boolean})">
+            <summary>
+            Semantic convenience for <code>!source.Any(...)</code>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.EnumerableContainsWithPredicateExtensions.Contains``1(System.Collections.Generic.IEnumerable{ ``0},System.Func{ ``0,System.Boolean})">
+            <summary>
+            Semantic version of <see cref="!:IEnumrable.Any"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.EnumerableContainsWithPredicateExtensions.DoesNotContain``1(System.Collections.Generic.IEnumerable{ ``0},System.Func{ ``0,System.Boolean})">
+            <summary>
+            Semantically reverse of <see cref="M:Picklz.SharedKernel.BasicExtensions.EnumerableContainsWithPredicateExtensions.Contains``1(System.Collections.Generic.IEnumerable{ ``0},System.Func{ ``0,System.Boolean})"/> - i.e. it
+            returns <c>true</c> when the list DOES NOT contain
+            any matches.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.EnumerableContainsWithPredicateExtensions.DoesNotContain``1(System.Collections.Generic.IEnumerable{ ``0},``0)">
+            <summary>
+            Semantically reverse of <see cref="M:Picklz.SharedKernel.BasicExtensions.EnumerableContainsWithPredicateExtensions.Contains``1(System.Collections.Generic.IEnumerable{ ``0},System.Func{ ``0,System.Boolean})"/> - i.e. it
+            returns <c>true</c> when the list DOES NOT contain
+            any matches.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.NullableLongToStringExtensions.SafeToString(System.Nullable{ System.Int64},System.String)">
+            <summary>
+            Safe conversion of nullable long to string
+            </summary>
+            <param name="dec">The nullable decimal that is to be converted</param>
+            <param name="defaultValue">The default value to return in case the long is null</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.StringFirstExtensions.FirstXWithEllipsis(System.String,System.Int32,System.String)">
+            <summary>
+            Get the first <paramref name="length" /> characters of the string.
+            Add the given ellipsis if the string was cut.
+            </summary>
+            <param name="str">The string to cut</param>
+            <param name="length">Cut at this many characters</param>
+            <param name="ellipsis">The string added to the end if the string is cut</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.BasicExtensions.StringHasActualValueExtensions.HasActualValue(System.String)">
+            <summary>
+            Returns whether or not the given string has
+            a value that is not null and not whitespace.
+            </summary>
+            <returns>True if the string contains a non-null value
+            with characters other than whitespace</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.CloudStorage.CloudStorageBlobStorageClient">
+            <summary>
+            Blob storage implemented with Google Cloud Storage
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.CloudStorage.IBlobStorageClient">
+            <summary>
+            Low-level blob storage - e.g. Cloud Storage or filesystem
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.CloudStorage.IBlobStorageClient.SaveNewBlobAsync(System.String,System.String,System.Byte[])">
+            <summary>
+            Save a new blob
+            </summary>
+            <param name="bucket">The bucket for the blob</param>
+            <param name="name">The name of the blob (typically something filesystem path like)</param>
+            <param name="blob">The bytes that make up the blob itself</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.CloudStorage.IBlobStorageClient.GetBlobDataAsync(System.String,System.String)">
+            <summary>
+            Get the bytes[] from a blob
+            </summary>
+            <param name="bucket">The bucket in which the blob is</param>
+            <param name="name">The name of the blob (typically something filesystem path like)</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.CloudStorage.IBlobStorageClient.DeleteBlobAsync(System.String,System.String)">
+            <summary>
+            Delete the latest version of a blob
+            </summary>
+            <param name="bucket">The bucket for the blob</param>
+            <param name="name">The name of the blob (typically something filesystem path like)</param>
+        </member>
+        <member name="P:Picklz.SharedKernel.CloudStorage.IBlobStorageConfig.LocalFilesystemRootDir">
+            <summary>
+            The directory to use as the "blob storage" root
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Cloning.Cloner">
+            <summary>
+            Mockable instance cloner
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Cloning.Cloner.GetSettings">
+            <summary>
+            Generate the settings for the underlying cloner
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Cloning.Cloner.Deep``1(``0)">
+            <summary>
+            Get a deep clone of the given instance
+            </summary>
+            <param name="instance">The instance to clone</param>
+            <typeparam name="T"></typeparam>
+            <returns>A deep clone of the instance - i.e. referenced instances are also cloned</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.AddressAutoCompleteAsync(System.String,System.String)">
+            <summary>
+            Get a list of addresses that match the given query
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.FuzzyAutoCompleteAsync(System.String,System.String)">
+            <summary>
+            Get a list of addresses that fuzzy match the given query
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.GetSingleAddressOrThrowAsync(System.String,System.String)">
+            <summary>
+            Get a single exact match from dawa based on an address query.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.LookupSingleKvhOrThrow(System.String,System.String)">
+            <summary>
+            Get a single exact match from dawa based on component parts
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.LookupSingleKvhxOrThrowAsync(System.String,System.String)">
+            <summary>
+            Get a single exact match from dawa based on an kvhx query.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Dawa.DawaHighLevelApiClient.LookupSingleDawaIdOrThrowAsync(System.String,System.String)">
+            <summary>
+            Get a single exact match from dawa based on Dawa Id.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.ErrorHandling.ServiceStackErrorHandler.UncaughtExceptionHandlerAsync(ServiceStack.Web.IRequest,ServiceStack.Web.IResponse,System.String,System.Exception)">
+             <summary>
+             Handles exceptions that occur outside of ServiceStack services (e.g. filters, resolving etc)
+            
+             http://docs.servicestack.net/error-handling#register-handlers-for-handling-service-exceptions
+             </summary>
+             <param name="request">The request</param>
+             <param name="response">The response</param>
+             <param name="operationName">The name of the operation</param>
+             <param name="exception">The exception</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.ErrorHandling.ServiceStackErrorHandler.ServiceExceptionHandlerAsync(ServiceStack.Web.IRequest,System.Object,System.Exception)">
+             <summary>
+             Handles exceptions that occur inside ServiceStack services
+            
+             http://docs.servicestack.net/error-handling#register-handlers-for-handling-service-exceptions
+             </summary>
+             <param name="request">The request</param>
+             <param name="requestDto">The request DTO</param>
+             <param name="exception">The exception</param>
+             <returns><c>null</c> so ServiceStack will do it's magic</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.Exceptions.OnlyOwnerCanDoThatSemanticException">
+            <summary>
+            Someone tried to do something to a Home that
+            only an owner of that home can do.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Exceptions.ProfileMustBeVerifiedSemanticException">
+            <summary>
+            Someone tried to do something with an unverified profile,
+            but the action is only allowed for verified profiles.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Exceptions.SemanticException">
+            <summary>
+            You _can_ use this class directly, but I recommend
+            that you extend it instead, so you also have a
+            semantic name in your code.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Exceptions.SemanticException.Code">
+            <summary>
+            An actual trust-worthy machine readable error code
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Exceptions.UnauthorizedSemanticException">
+            <summary>
+            Someone tried to do something they do not have access to.
+            Could be because they are not logged in at all or could be due to
+            lack of privileges.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Extensions.SameSiteCookieExtensions.AddNonBreakingSameSiteCookies(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Http.SameSiteMode)">
+            <summary>
+            Configures a cookie policy to properly set the SameSite attribute
+            for Browsers that handle unknown values as Strict. Ensure that you
+            add the <seealso cref="T:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware" />
+            into the pipeline before sending any cookies!
+            </summary>
+            <remarks>
+            Cookies with NO SameSite attribute are treated as SameSite=Lax.
+            In order to always get the cookies send they need to be set to
+            SameSite=None. But since the current standard only defines Lax and
+            Strict as valid values there are some browsers that treat invalid
+            values as SameSite=Strict. We therefore need to check the browser
+            and either send SameSite=None or prevent the sending of SameSite=None.
+            Relevant links:
+            - https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1
+            - https://tools.ietf.org/html/draft-west-cookie-incrementalism-00
+            - https://www.chromium.org/updates/same-site
+            - https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+            - https://bugs.webkit.org/show_bug.cgi?id=198181
+            </remarks>
+            <param name="services">The service collection to register <see cref="T:Microsoft.AspNetCore.Builder.CookiePolicyOptions" /> into.</param>
+            <returns>The modified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Extensions.SameSiteCookieExtensions.DisallowsSameSiteNone(System.String)">
+            <summary>
+            Checks if the UserAgent is known to interpret an unknown value as Strict.
+            For those the <see cref="P:Microsoft.AspNetCore.Http.CookieOptions.SameSite" /> property should be
+            set to <see cref="!:Unspecified" />.
+            </summary>
+            <remarks>
+            This code is taken from Microsoft:
+            https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+            </remarks>
+            <param name="userAgent">The user agent string to check.</param>
+            <returns>Whether the specified user agent (browser) accepts SameSite=None or not.</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.FullExceptionTreeToStringExceptionExtension.FullExceptionTreeToString(System.Exception)">
+            <summary>
+            Dump the full tree of extensions (i.e. all inner exceptions)
+            to string
+            </summary>
+            <param name="exception">The exception to begin with</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.GatewayServiceProvider">
+            <summary>
+            For getting an <see cref="T:ServiceStack.IServiceGateway"/> in a class
+            that is deep down in the business logic 
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.GoogleDiagnostics.DefaultGoogleDiagnosticsConfig.ProjectId">
+             <summary>
+             The Google Cloud project id to use for error reporting.
+            
+             Defaults to <c>null</c> as the Google Kubernetes Engine is able
+             to auto detect
+             </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.GoogleDiagnostics.PicklzGoogleDiagnosticsExtension">
+            <summary>
+            Add custom google cloud tracer - based off official cloud tracer code
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.GooglePubSub.MessageProcessingResult">
+            <summary>
+            How did the processing of the message go?
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Graph.Pagination.IPaginationCursor`1">
+            <summary>
+            Define a cursor for use with pagination
+            </summary>
+            <typeparam name="TQueryState">Information about the data layer
+            query that will make it possible to reach the same result set
+            as the original query
+            </typeparam>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.IPaginationCursor`1.QueryState">
+            <summary>
+            Whatever information is needed to repeat
+            the query with a different window
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.IPaginationCursor`1.Previous">
+            <summary>
+            Return a cursor for the previous batch
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.IPaginationCursor`1.Next">
+            <summary>
+            Return a cursor for the next batch
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Graph.Pagination.IPaginationCursor">
+            <summary>
+            Simple interface suitable for generic
+            parameters etc where we do not care
+            about the details
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1">
+            <summary>
+            Pagination cursor based on the classic "page" concept.
+            You look at page X which has up to Y items. 
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.ItemsPerPage">
+            <summary>
+            How many items to include in each page
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.Page">
+             <summary>
+             Which page to get.
+            
+             Note that this is "1-indexed", i.e.
+             the first page is "1".
+             </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.ZeroBasedPage">
+            <summary>
+            Convenience helpers that wrap <see cref="P:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.Page"/>
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.QueryState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.Previous">
+            <inheritdoc/>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.Next">
+            <inheritdoc/>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor`1.Clone(System.Int32)">
+            <summary>
+            Clone (shallow) this and modify page
+            </summary>
+            <param name="page">The page value of the clone</param>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginatedGqlOut`1.Pagination">
+            <summary>
+            Info about the pagination such as cursors and total items
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginatedGqlOut`1.Items">
+            <summary>
+            The resulting items from the paginated query
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationCursorFactory.DecodeOrDefault``1(System.String,``0)">
+            <summary>
+            Decode an encoded cursor into an instance - or, if
+            the encoded value is null or empty, return the given
+            default cursor.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationCursorFactory.Encode(Picklz.SharedKernel.Graph.Pagination.IPaginationCursor)">
+            <summary>
+            Turn a cursor instance into a string
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationCursorFactory.CreatePageBasedCursor``1(Picklz.SharedKernel.Graph.Pagination.PaginationGqlIn,System.Int32,System.Int32,``0)">
+            <summary>
+            Create a <see cref="!:PageBasedPaginationCursor"/> based
+            on a pagination input and whatever is the sane defaults
+            for the particular use-case.
+            </summary>
+            <param name="paginationInput">Optional pagination input (i.e. can be null)</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationCursorFactory.CreatePageBasedCursor``1(Picklz.SharedKernel.StuffForServices.PaginationInputPartOfRequest,System.Int32,System.Int32,``0)">
+            <summary>
+            Create a <see cref="!:PageBasedPaginationCursor"/> based
+            on a pagination input and whatever is the sane defaults
+            for the particular use-case.
+            </summary>
+            <param name="paginationInput">Optional pagination input (i.e. can be null)</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationExtensions.GetPaginationArgumentOrDefault(HotChocolate.Resolvers.IResolverContext)">
+            <summary>
+            Get the pagination input argument from a request
+            or null if it was not provided
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationExtensions.MakePaginated``2(HotChocolate.Types.IObjectFieldDescriptor,System.Func{ HotChocolate.Resolvers.IResolverContext,System.Threading.Tasks.Task{ Picklz.SharedKernel.Graph.Pagination.PaginatedGqlOut{ ``0}}})">
+            <summary>
+            Creates the necessary config for the field
+            to be paginated
+            </summary>
+            <param name="descriptor">The field descriptor</param>
+            <param name="resolveAsync">The async function that resolves this field</param>
+            <typeparam name="TItemGqlOut"></typeparam>
+            <typeparam name="TItemGraphType"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Graph.Pagination.PaginationExtensions.ShouldWeReturnTotalItems(HotChocolate.Resolvers.IResolverContext)">
+            <summary>
+            Get whether or not the query requests pagination.totalItems
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlIn.Cursor">
+            <summary>
+            The cursor to the desired batch
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlIn.ItemsPerBatch">
+            <summary>
+            How many items to request when creating the cursor
+            This is ignored if Cursor is provided
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlIn.BatchesToSkip">
+            <summary>
+            How many batches to skip when creating the cursor
+            This is ignored if Cursor is provided
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlOut.PreviousCursor">
+            <summary>
+            Cursor pointing to the previous batch
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlOut.NextCursor">
+            <summary>
+            Cursor pointing to the next batch
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlOut.TotalItems">
+            <summary>
+            The total number of items matching
+            the query
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Graph.Pagination.PaginationGqlOut.ItemsPerBatch">
+            <summary>
+            How many items in each batch
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.HighLevelClients.BaseHighLevelApiClient.ErrorHandlingTelemetryTrackingHandlerAsync``1(System.String,System.String,System.String,System.Func{ System.Threading.Tasks.Task{ ``0}},System.Action{ System.Exception})">
+            <summary>
+            Exception trapping and telemetry tracking base handler method that is api agnostic
+            </summary>
+            <param name="serviceName">Name of the service being invoked (for telemetry)</param>
+            <param name="serviceEndpoint">Endpoint being invoked (for telemetry)</param>
+            <param name="caller">caller (for telemetry)</param>
+            <param name="actualApiCallFuncAsync">The func to invoke which is going to perform the actual API call. Should do as little as possible!</param>
+            <typeparam name="TResponse">The return type of the API call</typeparam>
+            <param name="additionalExceptionHandling">Additional exception handling code</param>
+            <returns>T if the API call is good, throws exceptions otherwise but ensures telemetry tracking</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.IdProvider.Ulid">
+            <summary>
+            Get a brand spanking new ULID
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.IdProvider.Snowflake">
+             <summary>
+             Generate a numeric Snowflake ID.
+            
+             This will generate a number that is a maximum of 19 characters
+             when converted to a string.
+             </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.ImageProcessing.ImageNormalizer.NormalizeImageStripExifAndConvertToJpeg(System.IO.Stream)">
+            <summary>
+            Normalizes the image by rotating by exif information and then strips all extraneous exif info
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.ImageProcessing.ImageNormalizer.StripExtraneousExifFromImage(ImageMagick.MagickImage)">
+            <summary>
+            Remove all exif data from the image except the Color Profile and Orientation
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="T:Picklz.SharedKernel.Issues.HelpUrgency">
+            <summary>
+            The urgency with which help is needed
+            </summary>
+        </member>
+        <member name="F:Picklz.SharedKernel.Issues.HelpUrgency.StayAsleep">
+            <summary>
+            Just take a look when you have time
+            </summary>
+        </member>
+        <member name="F:Picklz.SharedKernel.Issues.HelpUrgency.WakeUp">
+            <summary>
+            Handle this NOW!!!
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Issues.IIssueReporter">
+            <summary>
+            Reports errors/issues
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Issues.IIssueReporter.ReportIssueAsync(Picklz.SharedKernel.Issues.NeedHelpFrom,Picklz.SharedKernel.Issues.HelpUrgency,System.String,System.String)">
+            <summary>
+            Low-level dynamic issue reporting
+            </summary>
+            <param name="toWhom">Who can fix this issue?</param>
+            <param name="howUrgent">How urgent is it to get this fixed?</param>
+            <param name="message">Message that will help someone fix the issue</param>
+            <param name="additionalInfo">Additional data that can help in resolving this issue</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Issues.IIssueReporter.ReportIssueAsync(Picklz.SharedKernel.Issues.NeedHelpFrom,Picklz.SharedKernel.Issues.HelpUrgency,System.String,System.String,System.Exception)">
+            <summary>
+            Low-level dynamic issue reporting
+            </summary>
+            <param name="toWhom">Who can fix this issue?</param>
+            <param name="howUrgent">How urgent is it to get this fixed?</param>
+            <param name="message">Message that will help someone fix the issue</param>
+            <param name="additionalInfo">Additional data that can help in resolving this issue</param>
+            <param name="exception">The actual exception object - if any</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.Issues.IIssueReporterSink">
+            <summary>
+            A sink for use with <see cref="T:Picklz.SharedKernel.Issues.MultiSinkIssueReporter"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Issues.IIssueReporterSink.ReportIssueAsync(Picklz.SharedKernel.Issues.NeedHelpFrom,Picklz.SharedKernel.Issues.HelpUrgency,System.String,System.String,System.Exception)">
+            <summary>
+            Low-level dynamic issue reporting
+            </summary>
+            <param name="toWhom">Who can fix this issue?</param>
+            <param name="howUrgent">How urgent is it to get this fixed?</param>
+            <param name="message">Message that will help someone fix the issue</param>
+            <param name="additionalInfo">Additional data that can help in resolving this issue</param>
+            <param name="exception">The actual exception object - if any</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.Issues.StackDriverErrorReportingInternal.IssueInformationException">
+            <summary>
+            This exception serves only to collect our issue information
+            in an exception, as that is all StackDriver IExceptionLogger
+            is interested in
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.JsonSerializer">
+            <summary>
+            Mockable json serialization
+            
+            To control what is (de)serialized, use
+            <see cref="T:System.Runtime.Serialization.DataContractAttribute"/>,
+            <see cref="T:System.Runtime.Serialization.DataMemberAttribute"/> and
+            <see cref="T:System.Runtime.Serialization.IgnoreDataMemberAttribute"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.JsonSerializer.ToJson(System.Object)">
+            <summary>
+            Serialize object to json
+            </summary>
+            <param name="obj">The object to serialize</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.JsonSerializer.ToJsonPretty(System.Object)">
+            <summary>
+            Serialize object to pretty json
+            </summary>
+            <param name="obj">The object to serialize</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.JsonSerializer.FromJson``1(System.String)">
+            <summary>
+            Deserialize a JSON string to an object instance
+            </summary>
+            <param name="json">The JSON string</param>
+            <typeparam name="T">The type you want to deserialize to</typeparam>
+        </member>
+        <member name="T:Picklz.SharedKernel.Logging.NLogConfigHelper">
+            <summary>
+            Helpers for working with NLog config file stuff
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Logging.NLogConfigHelper.GetLogLevelConfigs(Microsoft.Extensions.Configuration.IConfigurationSection)">
+            <summary>
+            Get "logLevels" from the "NLog" config section
+            </summary>
+            <param name="nlogSection">The "NLog" config section</param>
+            <returns>A list of log level configs</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.Logging.StackDriverSeverityLayoutRenderer">
+             <summary>
+             This renderer maps from NLog's log level to StackDriver severity.
+            
+             <see href="https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#LogSeverity"/>
+             </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Mapping.IPicklzAutoMapperConfigurator.AddServiceSpecificMapping(AutoMapper.IMapperConfigurationExpression)">
+            <summary>
+            Add <see cref="N:AutoMapper"/> configuration specific to
+            a service. This will be called after common stuff has
+            been added
+            </summary>
+            <param name="cfg">The configuration expression to build on</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Mapping.PicklzAutoMapperSetup.GetMapperConfiguration(Funq.Container)">
+            <summary>
+            Returns the <see cref="N:AutoMapper"/> configuration
+            </summary>
+            <param name="container">The IoC container instance</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Mapping.PicklzAutoMapperSetup.GetMapper(AutoMapper.MapperConfiguration)">
+            <summary>
+            Get a configured mapper
+            </summary>
+            <param name="mapperConfig">The requested mapping configuration</param>
+            <returns>A configured mapper</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.Migration.NamespaceRestrictingReflectionMigrationFinder">
+            <summary>
+            Implementation providing "search for migrations" using reflection. It
+            looks for concrete classes in the provided assemblies, that implement <see cref="T:RapidCore.Migration.IMigration"/> and lives in the
+            namespace provided.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.BackendDefinitionBehavior">
+            <summary>
+            Defines the behavior for processing BackendDefinitions when Request Expectations exist
+            </summary>
+        </member>
+        <member name="F:Picklz.SharedKernel.MockHttp.BackendDefinitionBehavior.NoExpectations">
+            <summary>
+            Will not match Backend Definitions if Request Expectations exist
+            </summary>
+        </member>
+        <member name="F:Picklz.SharedKernel.MockHttp.BackendDefinitionBehavior.Always">
+            <summary>
+            Will match Backend Definitions if the next Request Expectation did not match
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.IMockedRequest">
+            <summary>
+            A preconfigured response to a HTTP request
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.IMockedRequest.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines if a request can be handled by this instance
+            </summary>
+            <param name="request">The <see cref="T:HttpRequestMessage"/> being sent</param>
+            <returns>true if this instance can handle the request; false otherwise</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.IMockedRequest.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Submits the request to be handled by this instance
+            </summary>
+            <param name="message">The request message being sent</param>
+            <param name="cancellationToken">A <see cref="T:CancellationToken"/> for long running requests</param>
+            <returns>The <see cref="T:HttpResponseMessage"/> to the request</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.IMockedRequestMatcher">
+            <summary>
+            Represents a constraint on a mocked request
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.IMockedRequestMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.AnyMatcher">
+            <summary>
+            A composite matcher that suceeds if any of it's composed matchers succeed
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.AnyMatcher.#ctor(System.Collections.Generic.IEnumerable{ Picklz.SharedKernel.MockHttp.IMockedRequestMatcher})">
+            <summary>
+            Construcuts a new instnace of AnyMatcher
+            </summary>
+            <param name="matchers">The list of matchers to evaluate</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.AnyMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if any of the supplied matchers succeed; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.ContentMatcher">
+            <summary>
+            Matches requests on request content
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.ContentMatcher.#ctor(System.String)">
+            <summary>
+            Constructs a new instance of ContentMatcher
+            </summary>
+            <param name="content">The content to match</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.ContentMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.CustomMatcher">
+            <summary>
+            Matches requests using a custom delegate
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.CustomMatcher.#ctor(System.Func{ System.Net.Http.HttpRequestMessage,System.Boolean})">
+            <summary>
+            Constructs a new instance of CustomMatcher
+            </summary>
+            <param name="matcher">The matcher delegate</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.CustomMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.FormDataMatcher">
+            <summary>
+            Matches requests on form data values
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.FormDataMatcher.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs a new instance of FormDataMatcher using a formatted query string
+            </summary>
+            <param name="formData">Formatted form data (key=value&amp;key2=value2)</param>
+            <param name="exact">When true, requests with form data values not included in <paramref name="formData"/> will not match. Defaults to false</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.FormDataMatcher.#ctor(System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Boolean)">
+            <summary>
+            Constructs a new instance of FormDataMatcher using a list of key value pairs to match
+            </summary>
+            <param name="values">A list of key value pairs to match</param>
+            <param name="exact">When true, requests with form data values not included in <paramref name="values"/> will not match. Defaults to false</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.FormDataMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.HeadersMatcher">
+            <summary>
+            Matches a request based on its request headers
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.HeadersMatcher.#ctor(System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Constructs a new instance of HeadersMatcher using a list of key value pairs to match
+            </summary>
+            <param name="headers">A list of key value pairs to match</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.HeadersMatcher.#ctor(System.String)">
+            <summary>
+            Constructs a new instance of HeadersMatcher using a formatted list of headers (Header: Value)
+            </summary>
+            <param name="headers">A formatted list of headers, separated by Environment.NewLine</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.HeadersMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.MethodMatcher">
+            <summary>
+            Matches requests based on their HTTP method
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.MethodMatcher.#ctor(System.Net.Http.HttpMethod)">
+            <summary>
+            Constructs a new instance of MethodMatcher
+            </summary>
+            <param name="method">The method to match against</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.MethodMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.PartialContentMatcher">
+            <summary>
+            Matches requests on partial request content
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.PartialContentMatcher.#ctor(System.String)">
+            <summary>
+            Constructs a new instance of PartialContentMatcher
+            </summary>
+            <param name="content">The partial content to match</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.PartialContentMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.QueryStringMatcher">
+            <summary>
+            Matches requests on querystring values
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.QueryStringMatcher.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs a new instance of QueryStringMatcher using a formatted query string
+            </summary>
+            <param name="queryString">A formatted query string (key=value&amp;key2=value2)</param>
+            <param name="exact">When true, requests with querystring values not included in <paramref name="queryString"/> will not match. Defaults to false</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.QueryStringMatcher.#ctor(System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Boolean)">
+            <summary>
+            Constructs a new instance of QueryStringMatcher using a list of key value pairs to match
+            </summary>
+            <param name="values">A list of key value pairs to match</param>
+            <param name="exact">When true, requests with querystring values not included in <paramref name="values"/> will not match. Defaults to false</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.QueryStringMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.Matchers.UrlMatcher">
+            <summary>
+            Matches requests on their URL
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.UrlMatcher.#ctor(System.String)">
+            <summary>
+            Constructs a new instance of UrlMatcher
+            </summary>
+            <param name="url">The url (relative or absolute) to match</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.Matchers.UrlMatcher.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines whether the implementation matches a given request
+            </summary>
+            <param name="message">The request message being evaluated</param>
+            <returns>true if the request was matched; false otherwise</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.MockedRequest">
+            <summary>
+            A preconfigured response to a HTTP request
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.#ctor">
+            <summary>
+            Creates a new MockedRequest with no initial matchers
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.#ctor(System.String)">
+            <summary>
+            Creates a new MockedRequest with an initial URL (and optionally query string) matcher
+            </summary>
+            <param name="url">An absolute or relative URL that may contain a query string</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.Matches(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Determines if a request can be handled by this instance
+            </summary>
+            <param name="message">The <see cref="T:HttpRequestMessage"/> being sent</param>
+            <returns>true if this instance can handle the request; false otherwise</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.With(Picklz.SharedKernel.MockHttp.IMockedRequestMatcher)">
+            <summary>
+            Constraints the request using custom logic
+            </summary>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.Respond(System.Func{ System.Threading.Tasks.Task{ System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Sets the response of ther 
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.Respond(System.Func{ System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task{ System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Supplies a response to the submitted request
+            </summary>
+            <param name="handler">The callback that will be used to supply the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequest.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Provides the configured response in relation to the request supplied
+            </summary>
+            <param name="message">The request being sent</param>
+            <param name="cancellationToken">The token used to cancel the request</param>
+            <returns>A Task containing the future response message</returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.MockedRequestExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:MockedRequest"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.With(Picklz.SharedKernel.MockHttp.MockedRequest,System.Func{ System.Net.Http.HttpRequestMessage,System.Boolean})">
+            <summary>
+            Constraints the request using custom logic
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="matcher">The delegate that will be used to constrain the request</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithQueryString(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.String)">
+            <summary>
+            Includes requests contain a particular query string value
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="name">The query string key to match</param>
+            <param name="value">The query string value to match (including null)</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithQueryString(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Includes requests contain a set of query string values
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">The query string key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithQueryString(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests contain a set of query string values
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">A formatted query string containing key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithExactQueryString(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Includes requests that contain all of the specified query string values and no others
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">The query string key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithExactQueryString(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests that contain all of the specified query string values and no others
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">A formatted query string containing key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithFormData(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.String)">
+            <summary>
+            Includes requests contain a particular form data value
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="name">The form data key to match</param>
+            <param name="value">The form data value to match (including null)</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithFormData(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Includes requests contain a set of query string values
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">The query string key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithFormData(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests contain a set of query string values
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">A formatted query string containing key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithExactFormData(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Includes requests that contain all of the specified form data values and no others
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">The query string key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithExactFormData(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests that contain all of the specified form data values and no others
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="values">A formatted query string containing key/value pairs to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithContent(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests with particular content
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="content">The content to match against the request</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithPartialContent(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests with content that contains a particular value
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="partialContent">The content to match against the request</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithHeaders(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.String)">
+            <summary>
+            Includes requests contain a particular header
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="name">The HTTP header name</param>
+            <param name="value">The value of the HTTP header to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithHeaders(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}})">
+            <summary>
+            Includes requests contain a set of headers
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithHeaders(Picklz.SharedKernel.MockHttp.MockedRequest,System.String)">
+            <summary>
+            Includes requests contain a set of headers
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A string containing headers as they would appear in the HTTP request</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithAny(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ Picklz.SharedKernel.MockHttp.IMockedRequestMatcher})">
+            <summary>
+            Requires that the request match any of the specified set of matchers
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="matchers">A list of matchers to evaluate</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.WithAny(Picklz.SharedKernel.MockHttp.MockedRequest,Picklz.SharedKernel.MockHttp.IMockedRequestMatcher[])">
+            <summary>
+            Requires that the request match any of the specified set of matchers
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="matchers">A list of matchers to evaluate</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="message">The complete <see cref="T:HttpResponseMessage"/> to return</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Net.Http.HttpContent)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Net.Http.HttpContent)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.Http.HttpContent)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Net.Http.HttpContent)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.String,System.String)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.String)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="content">The content of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.String)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.String)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.String,System.IO.Stream)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.IO.Stream)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.Func{ System.Net.Http.HttpRequestMessage,System.IO.Stream})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="handler">A delegate that will return a content stream at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.Func{ System.Net.Http.HttpRequestMessage,System.IO.Stream})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="handler">A delegate that will return a content stream at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.String,System.Func{ System.Net.Http.HttpRequestMessage,System.IO.Stream})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="handler">A delegate that will return a content stream at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.Func{ System.Net.Http.HttpRequestMessage,System.IO.Stream})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="mediaType">The media type of the response</param>
+            <param name="handler">A delegate that will return a content stream at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.String,System.IO.Stream)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.String,System.IO.Stream)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>, with an OK (200) status code
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="content">The content of the response</param>
+            <param name="mediaType">The media type of the response</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Func{ System.Net.Http.HttpRequestMessage,System.Net.Http.HttpContent})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="handler">The delegate that will return a <see cref="T:HttpContent"/> determined at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Func{ System.Net.Http.HttpRequestMessage,System.Net.Http.HttpContent})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="handler">The delegate that will return a <see cref="T:HttpContent"/> determined at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Func{ System.Net.Http.HttpRequestMessage,System.Net.Http.HttpContent})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="handler">The delegate that will return a <see cref="T:HttpContent"/> determined at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{ System.Collections.Generic.KeyValuePair{ System.String,System.String}},System.Func{ System.Net.Http.HttpRequestMessage,System.Net.Http.HttpContent})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="statusCode">The <see cref="T:HttpStatusCode"/> of the response</param>
+            <param name="headers">A list of HTTP header name/value pairs to add to the response.</param>
+            <param name="handler">The delegate that will return a <see cref="T:HttpContent"/> determined at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Func{ System.Net.Http.HttpRequestMessage,System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="handler">The delegate that will return a <see cref="T:HttpResponseMessage"/> determined at runtime</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.Http.HttpClient)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/> to defer to another <see cref="T:HttpClient"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="httpClient">The <see cref="T:HttpClient"/> that will handle requests</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Respond(Picklz.SharedKernel.MockHttp.MockedRequest,System.Net.Http.HttpMessageHandler)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/> to defer to another <see cref="T:HttpMessageListener"/>
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="handler">The <see cref="T:HttpMessageHandlert"/> that will handle requests</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockedRequestExtensions.Throw(Picklz.SharedKernel.MockHttp.MockedRequest,System.Exception)">
+            <summary>
+            Sets the response of the current <see cref="T:MockedRequest"/> to a lambda which throws the specified exception.
+            </summary>
+            <param name="source">The source mocked request</param>
+            <param name="exception">The exception to throw</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler">
+            <summary>
+            Responds to requests using pre-configured responses
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.#ctor(Picklz.SharedKernel.MockHttp.BackendDefinitionBehavior)">
+            <summary>
+            Creates a new instance of MockHttpMessageHandler
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.AutoFlush">
+            <summary>
+            Requests received while AutoFlush is true will complete instantly. 
+            Requests received while AutoFlush is false will not complete until <see cref="M:Flush"/> is called
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.Flush">
+            <summary>
+            Completes all pendings requests that were received while <see cref="M:AutoFlush"/> was false
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.Flush(System.Int32)">
+            <summary>
+            Completes <param name="count" /> pendings requests that were received while <see cref="M:AutoFlush"/> was false
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.ToHttpClient">
+            <summary>
+            Creates an HttpClient instance using this MockHttpMessageHandler
+            </summary>
+            <returns>An instance of HttpClient that can be used to send HTTP request against the configuration of this mock handler</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Maps the request to the most appropriate configured response
+            </summary>
+            <param name="request">The request being sent</param>
+            <param name="cancellationToken">The token used to cancel the request</param>
+            <returns>A Task containing the future response message</returns>
+        </member>
+        <member name="P:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.Fallback">
+            <summary>
+            Gets the <see cref="T:MockedRequest"/> that will handle requests that were otherwise unmatched
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.AddRequestExpectation(Picklz.SharedKernel.MockHttp.IMockedRequest)">
+            <summary>
+            Adds a request expectation
+            </summary>
+            <remarks>
+            Request expectations:
+            
+            <list>
+            <item>Match once</item>
+            <item>Match in order</item>
+            <item>Match before any backend definitions</item>
+            </list>
+            </remarks>
+            <param name="handler">The <see cref="T:IMockedRequest"/> that will handle the request</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.AddBackendDefinition(Picklz.SharedKernel.MockHttp.IMockedRequest)">
+            <summary>
+            Adds a backend definition
+            </summary>
+            <remarks>
+            Backend definitions:
+            
+            <list>
+            <item>Match multiple times</item>
+            <item>Match in any order</item>
+            <item>Match after all request expectations have been met</item>
+            </list>
+            </remarks>
+            <param name="handler">The <see cref="T:IMockedRequest"/> that will handle the request</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.GetMatchCount(Picklz.SharedKernel.MockHttp.IMockedRequest)">
+            <summary>
+            Returns the number of times the specified request specification has been met
+            </summary>
+            <param name="request">The mocked request</param>
+            <returns>The number of times the request has matched</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.Dispose(System.Boolean)">
+            <summary>
+            Disposes the current instance
+            </summary>
+            <param name="disposing">true if called from Dispose(); false if called from dtor()</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.VerifyNoOutstandingRequest">
+            <summary>
+            Throws an <see cref="T:InvalidOperationException"/> if there are requests that were received 
+            while <see cref="M:AutoFlush"/> was true, but have not been completed using <see cref="M:Flush"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.VerifyNoOutstandingExpectation">
+            <summary>
+            Throws an <see cref="T:InvalidOperationException"/> if there are any requests configured with Expects 
+            that have yet to be received
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.ResetExpectations">
+            <summary>
+            Clears any pending requests configured with Expect
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.ResetBackendDefinitions">
+            <summary>
+            Clears any mocked requests configured with When
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandler.Clear">
+            <summary>
+            Clears all mocked requests configured with either Expect or When
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.MockHttp.MockHttpMessageHandlerExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:MockHttpMessageHandler"/>
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandlerExtensions.When(Picklz.SharedKernel.MockHttp.MockHttpMessageHandler,System.Net.Http.HttpMethod,System.String)">
+            <summary>
+            Adds a backend definition 
+            </summary>
+            <param name="handler">The source handler</param>
+            <param name="method">The HTTP method to match</param>
+            <param name="url">The URL (absolute or relative, may contain * wildcards) to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandlerExtensions.When(Picklz.SharedKernel.MockHttp.MockHttpMessageHandler,System.String)">
+            <summary>
+            Adds a backend definition 
+            </summary>
+            <param name="handler">The source handler</param>
+            <param name="url">The URL (absolute or relative, may contain * wildcards) to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandlerExtensions.Expect(Picklz.SharedKernel.MockHttp.MockHttpMessageHandler,System.Net.Http.HttpMethod,System.String)">
+            <summary>
+            Adds a request expectation
+            </summary>
+            <param name="handler">The source handler</param>
+            <param name="method">The HTTP method to match</param>
+            <param name="url">The URL (absolute or relative, may contain * wildcards) to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.MockHttp.MockHttpMessageHandlerExtensions.Expect(Picklz.SharedKernel.MockHttp.MockHttpMessageHandler,System.String)">
+            <summary>
+            Adds a request expectation
+            </summary>
+            <param name="handler">The source handler</param>
+            <param name="url">The URL (absolute or relative, may contain * wildcards) to match</param>
+            <returns>The <see cref="T:MockedRequest"/> instance</returns>
+        </member>
+        <member name="P:Picklz.SharedKernel.PicklzEnvironment.AllowsUnsafeActions">
+            <summary>
+            Whether or not doing risky stuff like dumping
+            config etc, is allowed in this environment.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.PicklzServiceOptions">
+             <summary>
+             Static configuration of a service in the Picklz platform.
+             
+             The class is static as it makes no sense to require consumers
+             to implement a special Startup class, just to be able to post
+             in configuration options - which is required, as the .UseStartup does
+             not support being fed an instance.
+            
+             Boot-up process:
+             1. Container and AppHost is setup and stuff is registered
+             2. <see cref="F:Picklz.SharedKernel.PicklzServiceOptions.SanityCheckAsync"/> is called
+             3. Migrations are run
+             4. WebHost is started
+             5. <see cref="P:Picklz.SharedKernel.PicklzServiceOptions.RunWhenServiceStarts"/> is called during WebHost startup
+             </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.PicklzServiceOptions.Url">
+            <summary>
+            The URL to provide the <see cref="!:IWebHostBuilder.UseUrls"/>
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.PicklzServiceOptions.Name">
+            <summary>
+            The name of the service
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.PicklzServiceOptions.ServiceStackLicenseKey">
+            <summary>
+            The ServiceStack license key to use
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.PicklzServiceOptions.RunWhenServiceStarts">
+            <summary>
+            This method is run with <see cref="M:System.Threading.Tasks.Task.Run(System.Action)"/> during application boot
+            </summary>
+        </member>
+        <member name="F:Picklz.SharedKernel.PicklzServiceOptions.SanityCheckAsync">
+             <summary>
+             Run custom code to perform a sanity check of configuration, db setup etc.
+            
+             If the sanity check returns "yay", then the service will continue booting.
+             If the sanity check returns "no", then a "what the fuck" is raised in the system
+             and the service is shut down.
+             </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Postgres.PgFactoryBase`1.OpenAsync">
+            <summary>
+            Open a connection that allows both reading and writing.
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.ProtectedPaths.BlockDangerousRoutesGlobalRequestFilter.BlockDangerousRoutes(ServiceStack.Web.IRequest,ServiceStack.Web.IResponse,System.Object)">
+            <summary>
+            Return 404 if the environment does not allow unsafe actions and
+            the DTO is marked with <see cref="T:Picklz.SharedKernel.ProtectedPaths.DangerousRouteAttribute"/>
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument">
+            <summary>
+            Elastic document for storing migrations that have been executed
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.Id">
+            <summary>
+            The Id for the migration.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.Name">
+            <summary>
+            The name of the migration.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.StepsCompleted">
+            <summary>
+            The list of steps that have been completed successfully.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.MigrationCompleted">
+            <summary>
+            Indication of whether or not the migration completed.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.TotalMigrationTimeInMs">
+            <summary>
+            The total time of the migration in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.RapidCoreCandidates.Elastic.Migration.Internal.MigrationDocument.CompletedAtUtc">
+            <summary>
+            The time this migration was completed. In UTC.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.MimeTypeChecker">
+            <summary>
+            List of mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+            Signatures: https://en.wikipedia.org/wiki/List_of_file_signatures
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.MimeTypeChecker.GetMimeType(System.Byte[],System.String)">
+             <summary>
+             Get mime-type based on file contents.
+            
+             For binary signatures that are not unique, the
+             filename (if given) will be used to guess which
+             of the actual types it is.
+             
+             </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.MimeTypeChecker.GetMimeTypeFromBase64(System.ReadOnlySpan{ System.Char},System.String)">
+             <summary>
+             Get mime-type based on base64 encoded file contents.
+            
+             For binary signatures that are not unique, the
+             filename (if given) will be used to guess which
+             of the actual types it is.
+             </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.MimeTypeChecker.GetMimeTypeFromFilename(System.ReadOnlySpan{ System.Char})">
+            <summary>
+            "Guess" the mime-type based on a filename (i.e. extension).
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.MimeTypeChecker.IsMimeTypeOneOfTheseFromBase64(System.ReadOnlySpan{ System.Char},System.String,System.String[])">
+            <summary>
+            Check whether the given base64 encoded bytes
+            have a mime-type that matches one of the
+            allowed types
+            </summary>
+            <param name="base64EncodedBytes">The base64 encoded bytes</param>
+            <param name="filename">The filename associated with the bytes (can be null)</param>
+            <param name="allowedMimeTypes">The list of allowed mime-types</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.ShallowFileTypeChecker">
+            <summary>
+            Shallow file type checking - i.e. it does not look
+            at the bytes of a file to determine mime-type, it only
+            looks at file extensions
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.FileSystem.ShallowFileTypeChecker.IsOneOfTheseExtensions(System.String,System.String[])">
+            <summary>
+            Check whether the given filename has one of the allowed
+            extensions in a case-insensitive fashion.
+            </summary>
+            <param name="filename">The filename with or without path</param>
+            <param name="allowedExtensionsCaseInsensitive">The allowed extensions - e.g. ".jpg", ".PNG", ".yoMomma"</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.RapidCoreCandidates.Migration.ExtendableReflectionMigrationFinder">
+            <summary>
+            This is a non-breaking change to the <see cref="T:RapidCore.Migration.ReflectionMigrationFinder"/>
+            in RapidCore that could be merged at some point.
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.RapidCoreCandidates.UtcOffsetHelper">
+            <summary>
+            This might be merged with <see cref="T:RapidCore.Globalization.UtcHelper"/>
+            or might be its own thing. Who knows!
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.RapidCoreCandidates.UtcOffsetHelper.Now">
+            <summary>
+            Get the current date and time in UTC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Picklz.SharedKernel.SanityCheckResult">
+            <summary>
+            The result of running a sanity check during <see cref="F:Picklz.SharedKernel.PicklzServiceOptions.SanityCheckAsync"/>
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.SanityCheckResult.EverythingIsFine">
+            <summary>
+            Sanity check shows that everything is fine and the service
+            can continue booting
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.SanityCheckResult.Messages">
+             <summary>
+             Messages that should be included in the "sanity check failed" notifications.
+            
+             These should pin-point what is wrong and possibly how to fix it.
+             </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.SanityCheckResult.WhoCanFixThis">
+             <summary>
+             Who can fix this service?
+            
+             Defaults to <see cref="F:Picklz.SharedKernel.Issues.NeedHelpFrom.Operations"/>
+             </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Security.Claims">
+             <summary>
+             Friendly wrapper around <see cref="T:System.Security.Claims.ClaimsPrincipal"/>.
+            
+             When available, we use the officially registered claim names/types from
+             https://www.iana.org/assignments/jwt/jwt.xhtml
+             </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Security.Claims.IsEmpty">
+             <summary>
+             Get whether or not there are any claims.
+            
+             Background: A request has a ClaimsPrincipal even when a JWT
+             is not provided. Using this pattern, code using this class
+             does not have to be littered with null checks.
+             </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Security.Claims.IsLoggedIn">
+            <summary>
+            Whether someone is indeed logged in
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Security.Claims.SubjectId">
+            <summary>
+            Get the subject ID (aka user id)
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.Security.Claims.IsTheSystem">
+            <summary>
+            Whether or not these claims represent the system itself
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Security.ClaimsProvider">
+            <summary>
+            Provider of the claims
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Security.ClaimsProvider.FromHttpContext">
+            <summary>
+            Get a JWT from the current http context
+            </summary>
+            <returns>Note that this always returns a Claims instance</returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Security.ClaimsProvider.SystemClaimsPrincipal">
+             <summary>
+             Create a claims set that represents the system itself.
+            
+             Note: only use this from internal stuff and only
+             if you do not have an HttpContext
+             </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.Security.PicklzRoles">
+            <summary>
+            Names of authorization roles in the Picklz platform
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.StuffForServices.PaginatedResult`1">
+            <summary>
+            This should be used as the response type from
+            a paginated repository method
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.StuffForServices.PaginationInputPartOfRequest">
+            <summary>
+            Pagination input meant to be part of a
+            ServiceStack request DTO
+            </summary>
+        </member>
+        <member name="T:Picklz.SharedKernel.StuffForServices.PaginationPartOfResponse">
+            <summary>
+            Pagination output meant to be part of a
+            ServiceStack response DTO
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.StuffForServices.PaginationPartOfResponse.PreviousCursor">
+            <summary>
+            Cursor pointing to the previous batch
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.StuffForServices.PaginationPartOfResponse.NextCursor">
+            <summary>
+            Cursor pointing to the next batch
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.StuffForServices.PaginationPartOfResponse.TotalItems">
+            <summary>
+            The total number of items matching
+            the query - if requested
+            </summary>
+        </member>
+        <member name="P:Picklz.SharedKernel.StuffForServices.PaginationPartOfResponse.ItemsPerBatch">
+            <summary>
+            How many items in each batch
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.StuffForServices.PaginationSqlExpressionExtensions.ApplyCursor``2(ServiceStack.OrmLite.SqlExpression{ ``0},Picklz.SharedKernel.Graph.Pagination.PageBasedPaginationCursor{ ``1})">
+            <summary>
+            Apply a <see cref="!:PageBasedPaginationCursor"/> to the
+            given query
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Telemetry.TelemetryAnnouncementFactory.HomeViewed(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a new Home View announcement.
+            </summary>
+            <param name="homeId">The id of the home</param>
+            <param name="homeSlug">The slug of the home that had a view</param>
+            <param name="deviceId">The device id if present</param>
+            <param name="userId">The userId if present</param>
+        </member>
+        <member name="M:Picklz.SharedKernel.Telemetry.TelemetryAnnouncer.HomeViewedAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a new home viewed announcement, using either a deviceId or userId as the tracking
+            id.
+            </summary>
+            <param name="homeId">The id of the home</param>
+            <param name="homeSlug">The slug of the home being viewed.</param>
+            <param name="deviceId">Device id if present</param>
+            <param name="userId">UserId if present</param>
+        </member>
+        <member name="T:Picklz.SharedKernel.Versioning.VersionHelper">
+            <summary>
+            Helps with figuring out what the version of an assembly is
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Versioning.VersionHelper.GetVersionStringOf(System.Type)">
+            <summary>
+            Get the version of the assembly containing the given type
+            </summary>
+        </member>
+        <member name="M:Picklz.SharedKernel.Versioning.VersionHelper.GetVersionStringOf(System.Reflection.Assembly)">
+            <summary>
+            Get the version of the assembly
+            </summary>
+            <returns>The version of the assembly or <c>0.0.0.0</c> if the assembly is <c>null</c></returns>
+        </member>
+        <member name="M:Picklz.SharedKernel.Versioning.VersionHelper.GetVersionOfRunningAssembly">
+            <summary>
+            Get the version of the assembly that is running - i.e.
+            the service.
+            </summary>
+        </member>
+        <member name="T:Refit.Implementation.Generated">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.GetUserInfoAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.GetAllUserInfosAsync(System.String,System.String,System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.UpdateMyUserInfoAsync(Picklz.SharedKernel.Auth.Models.UpdateMyUserInfoRequest,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.Picklz#SharedKernel#Auth#IAuthApi#GetUserInfoAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.Picklz#SharedKernel#Auth#IAuthApi#GetAllUserInfosAsync(System.String,System.String,System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelAuthIAuthApi.Picklz#SharedKernel#Auth#IAuthApi#UpdateMyUserInfoAsync(Picklz.SharedKernel.Auth.Models.UpdateMyUserInfoRequest,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.AddressAutoCompleteAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.AutoCompleteAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.AddressAsync(System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.AddressAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.Picklz#SharedKernel#Dawa#IDawaApi#AddressAutoCompleteAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.Picklz#SharedKernel#Dawa#IDawaApi#AutoCompleteAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.Picklz#SharedKernel#Dawa#IDawaApi#AddressAsync(System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.PicklzSharedKernelDawaIDawaApi.Picklz#SharedKernel#Dawa#IDawaApi#AddressAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

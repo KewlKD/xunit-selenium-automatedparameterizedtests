@@ -1,0 +1,42 @@
+stages:
+  - build
+  # - quick-tests
+  
+
+variables:
+  CONTAINER_TEST_IMAGE: registry.gitlab.com/webrickdevelopers/test-ui:$CI_COMMIT_REF_SLUG
+  CONTAINER_PROD_IMAGE: registry.gitlab.com/webrickdevelopers/test-ui:${CI_COMMIT_REF_SLUG}-prod
+  CONTAINER_GCP_REPOSITORY: $GOOGLE_REGISTRY_HOST/webrick-prod/test-ui
+  CONTAINER_GCP_IMAGE: $CONTAINER_GCP_REPOSITORY:$CI_PIPELINE_ID
+  ASPNETCORE_ENVIRONMENT: "ci"
+  API_TEST_POSTGRES_HOST: postgres-apitests
+
+before_script:
+  - echo $CI_BUILD_TOKEN | docker login -u gitlab-ci-token $CI_REGISTRY --password-stdin || echo "Docker cmd not found, ignore"
+
+build:
+  image: docker:19
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - docker build --pull -t $CONTAINER_TEST_IMAGE -f Dockerfile.testing .
+    - docker push $CONTAINER_TEST_IMAGE
+  tags:
+    - docker
+  only:
+    - branches # only run pipeline on branches
+  except:
+    - /^v\d+\.\d+\.\d+$/ # BUT NOT for refs like "v1.2.3" (aka tags where we release)
+
+test-unit:
+  stage: quick-tests
+  image: $CONTAINER_TEST_IMAGE
+  script:
+    - dotnet test WeBrick.Test.UI/WeBrick.Test.UI.csproj
+  tags:
+    - gitlab-org-docker
+  only:
+    - branches # only run pipeline on branches
+  except:
+    - /^v\d+\.\d+\.\d+$/ # BUT NOT for refs like "v1.2.3" (aka tags where we release)

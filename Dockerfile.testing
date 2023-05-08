@@ -1,0 +1,14 @@
+FROM  registry.gitlab.com/webrickdevelopers/docker-base-images/aspdotnetsdk_node:v6.0.0
+EXPOSE 40000/tcp
+
+# copy the somewhat static csproj files to
+# enable caching of the restore
+COPY ./WeBrick.Test.UI/WeBrick.Test.UI.csproj ./WeBrick.Test.UI/
+COPY ./WeBrick.Test.UI.sln .
+
+RUN dotnet restore
+
+# copy everything else and build
+COPY . .
+RUN dotnet build --no-restore
+COPY ./WeBrick.Test.UI/chromedriver.exe ./WeBrick.Test.UI/bin/Debug/net5.0/chromedriver.exe
